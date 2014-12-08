@@ -13,7 +13,6 @@ import logic.recognition.StarbucksCharacterRecognizer;
 import model.Receipt;
 import model.ReceiptClass;
 import model.ReceiptData;
-import net.sourceforge.tess4j.Tesseract;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.lightcouch.CouchDbClient;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -66,28 +64,9 @@ public class TheController {
         return "result";
     }
 
-
-    @RequestMapping("/browse")
-    public String dispatchBrowse(ModelMap model) {
-        File imageFile = new File("/img/eurotext.tif");
-        Tesseract instance = Tesseract.getInstance();  // JNA Interface Mapping
-        //Tesseract1 instance = new Tesseract1(); // JNA Direct Mapping
-        //TesseractOCR tessocr = new TessractOCR();
-
-        try {
-            String result = instance.doOCR(imageFile);
-            //System.out.println(result);
-            model.addAttribute("res", result);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return "browse";
-    }
-
-
     // ES, JEST
-    @RequestMapping("/test")
-    public String dispatchTest(ModelMap model) throws Exception {
+    @RequestMapping("/testes")
+    public String dispatchTestEs(ModelMap model) throws Exception {
 
         JestClientFactory factory = new JestClientFactory();
         factory.setHttpClientConfig(new HttpClientConfig
@@ -100,13 +79,10 @@ public class TheController {
         searchSourceBuilder.query(QueryBuilders.matchQuery("name", "Amit"));
 
         Search search = new Search.Builder(searchSourceBuilder.toString())
-                // multiple index or types can be added.
                 .addIndex("es-cdb-cache")
                 .build();
-
         SearchResult result = client.execute(search);
         System.out.println(result.getJsonString());
-        model.addAttribute("res", "asd");
         return "browse";
     }
 
@@ -117,9 +93,8 @@ public class TheController {
     public String dispatchTestCdb(ModelMap model) throws MalformedURLException {
 
         CouchDbInfo dbInfo = dbClient.context().info();
-
         JsonObject object = new JsonObject();
-        object.addProperty("name","Amit Kumar");
+        object.addProperty("name","test");
         Response resp;
 
         try {

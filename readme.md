@@ -1,9 +1,7 @@
 ReceiptScanner
 ==============
 
-Cieľom projektu je detekcia dát z oskenovaných bločkov z obchodu. Predovšetkým je to názov obchodu a celková suma za nákup. 
-
-Pomocou klasifikácie bločkov do skupín (napr. podľa loga) je možné pre rôzne skupiny prispôsobiť rozpoznanie textu.
+Cieľom projektu je detekcia dát z oskenovaných bločkov z obchodu. Predovšetkým názov obchodu a celková suma za nákup. Pomocou klasifikácie bločkov do skupín (napr. podľa loga) je možné pre rôzne skupiny prispôsobiť rozpoznanie textu.
 
 Zdrojový kód, príklady a dokumentácia: [gitlab.fit.cvut.cz/zitnyjak/receiptscanner](https://gitlab.fit.cvut.cz/zitnyjak/receiptscanner/)
 
@@ -28,7 +26,7 @@ Pred rozpoznaním znakov:
 #### Detekcia loga
 Detekcia loga je detekciou najväčšej/najvýraznejšej časti bločku. V praxi to pokrýva výrazné percento typov bločkov. Po predspracovaní sa rekurzívne prehľadajú všetky pixely a ich susedia, či spolu tvoria súvislé celky. Najväčšie z nich sa potom "spoja" a vystrihnú z pôvodného obrázku.
 
-#### Klasifikácia
+#### Klasifikácia
 Na orezanom logu sa SURF algoritmom detekujú významné featury a porovnajú s featurami tréningového setu. Logu a teda aj aktuálnemu bločku bude pridelená skupina s najväčšou podobnosťou.
 
 #### OCR
@@ -47,7 +45,7 @@ Použité knižnice a frameworky:
    - jOpenSurf - SURF detekcia featur, implementácia openSurf v Jave
    - Tesseract - open-source OCR
    - tess4j - java wrapper pre Tesseract
-   - Spring framework - Webový fwk pre Javu SE
+   - Spring framework - Webový fwk pre Javu
    - LightCouch - java wrapper pre komunikáciu s CouchDB
    - Gson - knižnica na prácu s formátom Json
    - Jade - extrémne coolový html šablónovací systém
@@ -86,5 +84,36 @@ Diskusia
 
 4. Automatické učenie detekovania zaujímavých dát na rozpoznanom texte, pomocou genetiky alebo iných vhodných ML algoritmov.
 
+5. Vytvorenie datasetu pre training tesseractu pre konkrétny prípad bločkov, a typických písem na bločkoch v češtine.
+
 Záver
 --------------
+
+Vrámci práce na MI-VMW som pripravil štruktúru projektu, "flow" rozpoznávania ako aj interfacy v Jave, v ktorých sa implementované "primitívne" metódy ľahko vymenia za inteligentnejšie. Neskôr sa budem sústrediť na vylepšenie predspracovania a výber vhodných ML algoritmov. Ak sa niektorá z metód ukáže ako reálne použiteľná, projekt bude implementovaný do mobilnej aplikácie na rozpoznávanie dát v bločkoch.
+
+
+Referencie
+--------------
+1) SMITH R.: An Overview of the Tesseract OCR Engine
+
+  - predspracovanie (line finding, baseline fitting, chopping (mono, non-fixed-pitch))
+  - klasifikácia, detekcia slov, detekcia nesprávne rozdelených častí znakov
+  - lingvistická analýza
+  - custom training
+
+2) CALDERERO F.: Region Merging Techniques Using Information Theory Statistical Measures
+
+  - segmentácia spájaním
+  - iid, markove reťazce
+
+3) BAY H., ESS A., TUYTELAARS T., VAN GOOL L.V.:SURF: Speeded Up Robust Features
+
+  - segmentácia nezávislá na pomere a rotácii
+
+4) SMITH. R.: A simple and efficient skew detection algorithm via text row accumulation
+
+  - skew detection for Tesseract
+
+5) WANG H., CHEN Y.: Logo Detection in Document Images Based on Boundary Extension of Feature Rectangles
+
+  - detekcia log
