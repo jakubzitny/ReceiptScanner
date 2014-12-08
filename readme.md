@@ -54,9 +54,24 @@ Použité knižnice a frameworky:
    - jade4j - java implementácia Jade html šablón
 
 
-Príklad výstupu, experimenty
+Príklad výstupov, experimenty
 ---------------
 
+1) Detekcia loga
+
+![logos](logos.png)
+
+2) Detekcia featur, podobnosť obrázkov 
+
+![features](features.png)
+
+3) OCR
+
+![ocr](ocr.png)
+
+4) WebApp
+
+![webapp](webapp.png)
 
 Diskusia
 --------------
