@@ -54,12 +54,8 @@ Použité knižnice a frameworky:
    - jade4j - java implementácia Jade html šablón
 
 
-Príklad výstupu
+Príklad výstupu, experimenty
 ---------------
-
-
-Experimenty
---------------
 
 
 Diskusia
@@ -67,13 +63,13 @@ Diskusia
 
 #### Vylepšenia
 
-Predspracovanie..
+1. Pridať inteligentnejšie orezávanie bločkov odfotených na tmavom pozadí.
 
-Trénovacie dáta v CouchDB napojené na ElasticSearch. ElasticSearch _river plugin dokáže
+2. Trénovacie dáta ukladať do CouchDB napojené na ElasticSearch. Pomocou pluginov dokáže ES indexovať a dotazovať obrázky (elasticsearch-image plugin) a automaticky indexovať pridávané dokumenty do CouchDB (elasticsearch-river-couchdb). Na klasifikáciu obrázkov by sa vďaka tomu dali využiť komplexnejšie algoritmy z knižnice Lucene, na ktorej je ES postavený, ktoré sú nielen účinnejšie ale aj rýchlejšie.
 
-detekcia loga klasifikácia.. detekcia aj neloga
+3. Pri detekcii loga by sa dala zakomponovať ďalšia "subklasifikácia", či je vôbec daná časť obrázku logo alebo nie, podľa nejakých typických vlastnotí log alebo dokonca podľa online databáz existujúcich log. Pri detekcii výrazných častí bločkov, ktoré by neboli logami by sa dali použiť na klasifikáciu celé obrázky (nielen orezané časti s logom).
 
-interfejsy
+4. Automatické učenie detekovania zaujímavých dát na rozpoznanom texte, pomocou genetiky alebo iných vhodných ML algoritmov.
 
 Záver
 --------------
