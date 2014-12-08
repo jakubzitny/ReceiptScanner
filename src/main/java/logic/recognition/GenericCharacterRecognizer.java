@@ -25,8 +25,10 @@ public class GenericCharacterRecognizer implements ICharacterRecognizer {
 
     @Override
     public ReceiptData scan(Receipt receipt) throws IOException {
+        String rawText = scanText(receipt.getOriginalImage());
         ReceiptData data = ReceiptData.loremIpsum();
         data.setReceiptClass(CLASSIDENTIFIER);
+        data.setRawText(rawText);
         return data;
     }
 

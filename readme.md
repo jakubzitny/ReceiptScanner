@@ -37,8 +37,9 @@ OCR knižnica Tesseract je kombinácia mnohých predspracovaní a algoritmov, kt
 Implementácia
 ---------------
 
-ReceiptScanner je webová aplikácia postavená na Spring MVC frameworku.
-Užívateľ môže na webe uploadnuť oscanovaný blok a v lepšom prípade na ňom aplikácia rozpozná nejaké dáta.
+ReceiptScanner je webová aplikácia postavená na Spring MVC frameworku. Rešpektuje MVC pattern typický pre podobné aplikácie. Kód je rozložený do balíčkov a má pripravené potrebné rozhrania pre plánované rozšírenia.
+
+Užívateľ na webe uploadnuje oscanovaný blok a (v lepšom prípade) aplikácia na ňom rozpozná nejaké dáta.
 
 Použité knižnice a frameworky:
 
@@ -74,6 +75,8 @@ Príklad výstupov, experimenty
 Diskusia
 --------------
 
+Aplikácia implementuje základné algoritmy, ako boli navrhnuté, funguje na niekoľkých zozbieraných testovacích dátach. Pre použite v reálnom svete však bude potrebné rozšíriť možnosti učenia, napojenie na ElasticSearch, ďalšie predspracovanie dát a lepšie natrénovanie OCR knižnice (prípadne napísanie vlastnej).
+
 #### Vylepšenia
 
 1. Pridať inteligentnejšie orezávanie bločkov odfotených na tmavom pozadí.
@@ -84,7 +87,7 @@ Diskusia
 
 4. Automatické učenie detekovania zaujímavých dát na rozpoznanom texte, pomocou genetiky alebo iných vhodných ML algoritmov.
 
-5. Vytvorenie datasetu pre training tesseractu pre konkrétny prípad bločkov, a typických písem na bločkoch v češtine.
+5. Vytvorenie datasetu pre training tesseractu pre konkrétny prípad bločkov, a typických písem na bločkoch v češtine. Custom segmentačné metódy.
 
 Záver
 --------------
@@ -112,7 +115,7 @@ Referencie
 
 4) SMITH. R.: A simple and efficient skew detection algorithm via text row accumulation
 
-  - skew detection for Tesseract
+  - detekcia sklonu textu
 
 5) WANG H., CHEN Y.: Logo Detection in Document Images Based on Boundary Extension of Feature Rectangles
 

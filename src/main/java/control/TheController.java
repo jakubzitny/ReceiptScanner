@@ -8,8 +8,8 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 import logic.classification.IClassificator;
 import logic.classification.SurfSimpleIClassificator;
+import logic.recognition.CharacterRecognizerWrapper;
 import logic.recognition.ICharacterRecognizer;
-import logic.recognition.StarbucksCharacterRecognizer;
 import model.Receipt;
 import model.ReceiptClass;
 import model.ReceiptData;
@@ -54,8 +54,7 @@ public class TheController {
             Receipt receipt = new Receipt(file);
             BufferedImage logo = receipt.separateLogo();
             ReceiptClass receiptClass = IClassificator.classify(logo);
-            //ICharacterRecognizer ocr = CharacterRecognizerWrapper.dispatch(receiptClass);
-            ICharacterRecognizer ocr = new StarbucksCharacterRecognizer();
+            ICharacterRecognizer ocr = CharacterRecognizerWrapper.dispatch(receiptClass);
             data = ocr.scan(receipt);
         } catch (IOException e) {
             e.printStackTrace();

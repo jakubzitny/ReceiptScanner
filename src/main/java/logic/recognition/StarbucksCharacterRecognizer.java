@@ -8,9 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by d_rc on 08/12/14.
+ * Created by d_rc on 06/12/14.
  */
-public class StarbucksCharacterRecognizer extends GenericCharacterRecognizer implements ICharacterRecognizer {
+public class StarbucksCharacterRecognizer extends GenericCharacterRecognizer {
 
     public static final String CLASSIDENTIFIER = "starbucks";
 
