@@ -1,5 +1,10 @@
 extends layout
 
 block content
-    p=data.getAmount();
-    p=data.getReceiptClass();
+    table.table
+        tr
+            td Typ
+            td=data.getReceiptClass();
+        tr
+            td Celková cena
+            td=data.getAmount();

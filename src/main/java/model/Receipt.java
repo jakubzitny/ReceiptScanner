@@ -153,6 +153,9 @@ public class Receipt {
         return convFile;
     }
 
+    public BufferedImage getOriginalImage() {
+        return mOriginalImage;
+    }
 
 
 }
