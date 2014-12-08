@@ -59,19 +59,19 @@ Príklad výstupov, experimenty
 
 1) Detekcia loga
 
-![logos](logos.png)
+![logos](https://gitlab.fit.cvut.cz/zitnyjak/receiptscanner/raw/master/src/main/webapp/static/img/logos.png)
 
 2) Detekcia featur, podobnosť obrázkov 
 
-![features](features.png)
+![features](https://gitlab.fit.cvut.cz/zitnyjak/receiptscanner/raw/master/src/main/webapp/static/img/features.png)
 
 3) OCR
 
-![ocr](ocr.png)
+![ocr](https://gitlab.fit.cvut.cz/zitnyjak/receiptscanner/raw/master/src/main/webapp/static/img/ocr.png)
 
 4) WebApp
 
-![webapp](webapp.png)
+![webapp](https://gitlab.fit.cvut.cz/zitnyjak/receiptscanner/raw/master/src/main/webapp/static/img/webapp.png)
 
 Diskusia
 --------------
