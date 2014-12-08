@@ -1,0 +1,14 @@
+*.sw*
+.DS_Store
+
+target/
+
+# Eclipse artifacts, including WTP generated manifests
+.classpath
+.project
+
+# IDEA artifacts and output dirs
+*.iml
+*.ipr
+*.iws
+.idea

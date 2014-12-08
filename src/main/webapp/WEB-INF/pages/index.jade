@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    #search
+        .col-md-6.col-md-offset-3
+            form(method="post", action="search", role="form", enctype="multipart/form-data")
+                input(type="file", name="file", id="file", class="form-control", placeholder="file")
+                input(type="submit", value="search", class="btn btn-primary")
+                span(style="margin: 20px") or
+                a(href="browse", role="button", class="btn btn-default") browse
+                a(href="test", role="button", class="btn btn-default") test
+        .clear
+            br
