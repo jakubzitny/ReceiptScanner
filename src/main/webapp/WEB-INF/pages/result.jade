@@ -4,7 +4,10 @@ block content
     table.table
         tr
             td Typ
-            td=data.getReceiptClass();
+            td=data.getReceiptClass()
         tr
             td Celková cena
-            td=data.getAmount();
+            if (data.getAmount() != 125.0)
+                td=data.getAmount()
+            else
+                td NONE

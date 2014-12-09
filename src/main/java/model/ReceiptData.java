@@ -13,6 +13,14 @@ public class ReceiptData {
     private String mRawText;
     private List<ReceiptItem> mItems = new ArrayList<ReceiptItem>();
 
+    /**
+     * factory method
+     * @return ReceiptData example instance
+     */
+    public static ReceiptData create() {
+        return loremIpsum();
+    }
+
     public String getReceiptClass() {
         return mClass;
     }

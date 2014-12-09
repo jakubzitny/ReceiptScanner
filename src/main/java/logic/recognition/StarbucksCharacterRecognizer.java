@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class StarbucksCharacterRecognizer extends GenericCharacterRecognizer {
 
-    public static final String CLASSIDENTIFIER = "starbucks";
+    public static final String CLASSIDENTIFIER = "Starbucks";
 
     @Override
     public ReceiptData scan(Receipt receipt) throws IOException {
@@ -24,7 +24,7 @@ public class StarbucksCharacterRecognizer extends GenericCharacterRecognizer {
             price = Double.parseDouble(matcher.group(1));
             System.out.println(matcher.group(1));
         }
-        ReceiptData data = ReceiptData.loremIpsum();
+        ReceiptData data = ReceiptData.create();
         data.setAmount(price);
         data.setReceiptClass(CLASSIDENTIFIER);
         data.setRawText(rawText);

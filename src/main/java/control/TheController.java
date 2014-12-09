@@ -7,8 +7,8 @@ import io.searchbox.client.config.HttpClientConfig;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 import logic.classification.IClassificator;
-import logic.classification.SurfSimpleIClassificator;
-import logic.recognition.CharacterRecognizerWrapper;
+import logic.classification.SurfSimpleClassificator;
+import logic.recognition.CharacterRecognizerFactory;
 import logic.recognition.ICharacterRecognizer;
 import model.Receipt;
 import model.ReceiptClass;
@@ -32,19 +32,33 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+/**
+ * TODO: try catch here, pdd rotate, cut
+ */
+
 @Controller
 public class TheController {
 
     @Autowired
     private CouchDbClient dbClient;
     private static final Logger logger = LoggerFactory.getLogger(TheController.class);
-    private IClassificator IClassificator = SurfSimpleIClassificator.create();
+    private IClassificator classificator = SurfSimpleClassificator.create();
 
+    /**
+     * route index page
+     * @return index template to render
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String dispatchIndex() {
         return "index";
     }
 
+    /**
+     * process search POST request
+     * @param file uploaded image to process
+     * @param model modelmap with template data to rende
+     * @return result template to render
+     */
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("file") MultipartFile file, ModelMap model) {
         ReceiptData data = ReceiptData.loremIpsum();
@@ -52,12 +66,17 @@ public class TheController {
             if (file.isEmpty())
                 throw new IOException("File is empty.");
             Receipt receipt = new Receipt(file);
+            // find logo
             BufferedImage logo = receipt.separateLogo();
-            ReceiptClass receiptClass = IClassificator.classify(logo);
-            ICharacterRecognizer ocr = CharacterRecognizerWrapper.dispatch(receiptClass);
+            // classify logo
+            ReceiptClass receiptClass = classificator.classify(logo);
+            // ocr
+            ICharacterRecognizer ocr = CharacterRecognizerFactory.dispatch(receiptClass);
             data = ocr.scan(receipt);
         } catch (IOException e) {
             e.printStackTrace();
+            model.addAttribute("errmess", "this is fail");
+            return "error";
         }
         model.addAttribute("data", data);
         return "result";

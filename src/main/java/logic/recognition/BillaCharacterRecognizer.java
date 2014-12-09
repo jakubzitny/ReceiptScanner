@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class BillaCharacterRecognizer extends GenericCharacterRecognizer {
 
-    public static final String CLASSIDENTIFIER = "billa";
+    public static final String CLASSIDENTIFIER = "Billa";
 
     @Override
     public ReceiptData scan(Receipt receipt) throws IOException {

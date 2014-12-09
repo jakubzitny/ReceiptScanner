@@ -9,10 +9,10 @@ import java.io.IOException;
 /**
  * Created by d_rc on 08/12/14.
  */
-public class SurfSimpleIClassificator implements IClassificator {
+public class SurfSimpleClassificator implements IClassificator {
 
-    public static SurfSimpleIClassificator create () {
-        return new SurfSimpleIClassificator();
+    public static SurfSimpleClassificator create () {
+        return new SurfSimpleClassificator();
     }
 
     public ReceiptClass classify(BufferedImage image) throws IOException {

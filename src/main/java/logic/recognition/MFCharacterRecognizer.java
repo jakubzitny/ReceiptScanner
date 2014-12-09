@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class MFCharacterRecognizer extends GenericCharacterRecognizer {
 
-    public static final String CLASSIDENTIFIER = "mf";
+    public static final String CLASSIDENTIFIER = "MF";
 
     @Override
     public ReceiptData scan(Receipt receipt) throws IOException {
