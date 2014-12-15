@@ -79,20 +79,17 @@ Aplikácia implementuje základné algoritmy, ako boli navrhnuté, funguje na ni
 
 #### Vylepšenia
 
-1. Pridať inteligentnejšie orezávanie bločkov odfotených na tmavom pozadí.
+1. Predspracovanie - vylepšiť, pomerať.
 
-2. Trénovacie dáta ukladať do CouchDB napojené na ElasticSearch. Pomocou pluginov dokáže ES indexovať a dotazovať obrázky (elasticsearch-image plugin) a automaticky indexovať pridávané dokumenty do CouchDB (elasticsearch-river-couchdb). Na klasifikáciu obrázkov by sa vďaka tomu dali využiť komplexnejšie algoritmy z knižnice Lucene, na ktorej je ES postavený, ktoré sú nielen účinnejšie ale aj rýchlejšie.
+2. Pridať inteligentnejšie orezávanie bločkov odfotených na tmavom pozadí.
 
-3. Pri detekcii loga by sa dala zakomponovať ďalšia "subklasifikácia", či je vôbec daná časť obrázku logo alebo nie, podľa nejakých typických vlastnotí log alebo dokonca podľa online databáz existujúcich log. Pri detekcii výrazných častí bločkov, ktoré by neboli logami by sa dali použiť na klasifikáciu celé obrázky (nielen orezané časti s logom).
+3. Trénovacie dáta ukladať do CouchDB napojené na ElasticSearch. Pomocou pluginov dokáže ES indexovať a dotazovať obrázky (elasticsearch-image plugin) a automaticky indexovať pridávané dokumenty do CouchDB (elasticsearch-river-couchdb). Na klasifikáciu obrázkov by sa vďaka tomu dali využiť komplexnejšie algoritmy z knižnice Lucene, na ktorej je ES postavený, ktoré sú nielen účinnejšie ale aj rýchlejšie.
 
-4. Automatické učenie detekovania zaujímavých dát na rozpoznanom texte, pomocou genetiky alebo iných vhodných ML algoritmov.
+4. Pri detekcii loga by sa dala zakomponovať ďalšia "subklasifikácia", či je vôbec daná časť obrázku logo alebo nie, podľa nejakých typických vlastnotí log alebo dokonca podľa online databáz existujúcich log. Pri detekcii výrazných častí bločkov, ktoré by neboli logami by sa dali použiť na klasifikáciu celé obrázky (nielen orezané časti s logom).
 
-5. Vytvorenie datasetu pre training tesseractu pre konkrétny prípad bločkov, a typických písem na bločkoch v češtine. Custom segmentačné metódy.
+5. Automatické učenie detekovania zaujímavých dát na rozpoznanom texte, pomocou genetiky alebo iných vhodných ML algoritmov.
 
-Záver
---------------
-
-Vrámci práce na MI-VMW som pripravil štruktúru projektu, "flow" rozpoznávania ako aj interfacy v Jave, v ktorých sa implementované "primitívne" metódy ľahko vymenia za inteligentnejšie. Neskôr sa budem sústrediť na vylepšenie predspracovania a výber vhodných ML algoritmov. Ak sa niektorá z metód ukáže ako reálne použiteľná, projekt bude implementovaný do mobilnej aplikácie na rozpoznávanie dát v bločkoch.
+6. Vytvorenie datasetu pre training tesseractu pre konkrétny prípad bločkov, a typických písem na bločkoch v češtine. Custom segmentačné metódy.
 
 
 Referencie
