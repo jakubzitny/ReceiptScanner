@@ -16,7 +16,7 @@
         <property name="basePath" value="/WEB-INF/pages/"/>
     </bean>
 
-    <bean id="dbClient" class="org.lightcouch.CouchDbClient" />
+    <!--<bean id="dbClient" class="org.lightcouch.CouchDbClient" />-->
 
     <bean id="jadeConfiguration" class="de.neuland.jade4j.JadeConfiguration">
         <property name="prettyPrint" value="false"/>

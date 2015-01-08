@@ -29,7 +29,7 @@ public class GenericCharacterRecognizer implements ICharacterRecognizer {
 
     public String scanText(BufferedImage image) throws IOException {
         // save image to tmp
-        File tmpImgFile =  File.createTempFile("tmpImg", ".jpg");
+        File tmpImgFile = File.createTempFile("tmpImg", ".jpg");
         ImageIO.write(image, "jpg", tmpImgFile);
         String rawData = TesseractWrapper.runTesseract(tmpImgFile.getAbsolutePath());
         tmpImgFile.delete();

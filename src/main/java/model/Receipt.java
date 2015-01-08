@@ -17,7 +17,9 @@ import java.util.List;
  */
 public class Receipt {
 
-    private BufferedImage mOriginalImage;
+    private static final int CONTRAST_BORDER = 60;
+
+    private BufferedImage mOriginalImage, mPreProcessedImage;
     private ArrayList<ArrayList<Integer>> mPixelMatrix = new ArrayList<ArrayList<Integer>>();
     private int mHeight;
     private int mWidth;
@@ -30,10 +32,20 @@ public class Receipt {
 
     public Receipt(MultipartFile multipartFile) throws IOException {
         File file = multiPartFile2File(multipartFile);
+        init(file);
+    }
+
+    public Receipt(File file) throws IOException {
+        init(file);
+    }
+
+    public void init(File file) throws IOException {
         mOriginalImage = ImageIO.read(file);
+        //mPreProcessedImage = ImagePreProcessor.brighten(ImagePreProcessor.desaturate(mOriginalImage));
         mHeight = mOriginalImage.getHeight();
         mWidth = mOriginalImage.getWidth();
         imageToPixelMatrix(mOriginalImage);
+        //imageToPixelMatrix(mPreProcessedImage);
     }
 
     public BufferedImage separateLogo() {
@@ -45,13 +57,12 @@ public class Receipt {
         if (p == 0) {
             logo = mClusterList.get(0);
         } else {
-            System.out.println("Merging " + p + " largest clusters.");
+            //System.out.println("Merging " + p + " largest clusters.");
             logo = new Cluster(mClusterList.subList(0, p));
         }
         BufferedImage logoImage = mOriginalImage.getSubimage(logo.getLeft().y, logo.getTop().x,
                 logo.getRight().y - logo.getLeft().y, logo.getBottom().x - logo.getTop().x);
         return logoImage;
-
     }
 
     private int findLargeClusters() {
@@ -109,7 +120,7 @@ public class Receipt {
 
     private void buildClusterNeighbor(int ii, int jj, Cluster cluster) {
         if (ii >= 0 && jj >= 0 && ii < mClusterMatrix.size() && jj < mClusterMatrix.get(0).size() &&
-                mClusterMatrix.get(ii).get(jj) == 1 && mClusterMatrix.get(ii).get(jj) == 0) {
+                mPixelMatrix.get(ii).get(jj) == 1 && mClusterMatrix.get(ii).get(jj) == 0) {
             buildCluster(ii, jj, cluster);
         }
     }
@@ -125,7 +136,7 @@ public class Receipt {
                 int grayLevel = (r + g + b) / 3;
                 // add contrast
                 int pixel = 1;
-                if (grayLevel > 50) pixel = 0;
+                if (grayLevel > CONTRAST_BORDER) pixel = 0;
                 //System.out.print(pixel);
                 line.add(pixel);
             }

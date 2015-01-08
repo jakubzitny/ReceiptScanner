@@ -24,7 +24,6 @@ public class TesseractWrapper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return output.toString();
     }
 
